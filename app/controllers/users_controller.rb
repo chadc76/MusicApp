@@ -13,7 +13,8 @@ class UsersController < ApplicationController
       log_in_user!(@user)
       redirect_to user_url(@user)
     else
-      render json: @user.errors.full_messages, status: :unprocessable_entity
+      flash[:error] = @user.errors.full_messages
+      render :new
     end
   end
 
