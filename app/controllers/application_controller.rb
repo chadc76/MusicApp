@@ -11,6 +11,6 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    !current_user.nil?
+    redirect_to user_url(current_user) if !current_user.nil?
   end
 end
