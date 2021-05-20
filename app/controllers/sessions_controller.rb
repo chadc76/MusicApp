@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :logged_in?, except: [:destroy]
+
   def new 
     render :new
   end
@@ -16,5 +18,14 @@ class SessionsController < ApplicationController
       session[:session_token] = user.session_token
       redirect_to user_url(user)
     end
+  end
+
+  def destroy
+    unless logged_in?
+      redirct_to new_sessions
+    end
+    current_user.reset_session_token!
+    session_token[:session_token] = nil
+    redirect_to root_url
   end
 end
