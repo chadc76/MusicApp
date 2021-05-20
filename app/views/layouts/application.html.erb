@@ -6,24 +6,32 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap" 
+      rel="stylesheet">
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <nav>
-      <h1>Music App</h1>
-      <ul>
+    <nav class="header-content">
+      <h1 class="main-logo">Music App</h1>
+
+      <ul class="header-list">
         <% if current_user %>
-          <li><%= button_to "Log Out!", session_url, method: :delete %></li>
+        <li><%= button_to "Log Out!", session_url, method: :delete %></li>
         <% else %>
-          <li><%= link_to "Log in!", new_session_url %></li>
-          <li><%= link_to "Sign up!", new_user_url %></li>
+        <li class="header-list-item"><%= link_to "Log in!", new_session_url %></li>
+        <li class="header-list-item"><%= link_to "Sign up!", new_user_url %></li>
         <% end %>
       </ul>
     </nav>
-    <main>
+    
+    <main class="main">
       <%= yield %>
     </main>
+
   </body>
 </html>

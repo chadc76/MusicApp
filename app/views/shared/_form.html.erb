@@ -1,14 +1,14 @@
-<% action_url = log_in ? session_url : new_user_url %>
+<% action_url = log_in ? session_url : users_url %>
 <% submit_text = log_in ? "Log in!" : "Sign up!" %>
 <form action="<%= action_url %>" method="post">
   <%= auth_token %>
   
-  <label for="user_email">Email</label>
+  <label class="email-label" for="user_email">Email:</label>
   <input type="text" name="user[email]" id="user_email">
 
   <br>
 
-  <label for="user_password">Password</label>
+  <label for="user_password">Password:</label>
   <input type="password" name="user[password]" id="user_password">
 
   <br>
