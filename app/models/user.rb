@@ -16,7 +16,7 @@ class User < ApplicationRecord
   validates :password_digest, presence: { message: 'Password can\'t be blank' }
   validates :password, length: { minimum: 6, allow_nil: true }
 
-  after_initialize: ensure_session_token
+  after_initialize :ensure_session_token
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
