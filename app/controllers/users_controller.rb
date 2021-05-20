@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by_credentials(user_params[:email], user_params[:password])
+    @user = User.find(params[:id])
     render json: @user.email
   end
 
