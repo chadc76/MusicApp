@@ -9,10 +9,15 @@ class UsersController < ApplicationController
 
     if @user.save
       login!(@user)
-      render json: @user
+      redirect_to user_url(@user)
     else
       render json: @user.errors.full_messages, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @user = User.find_by_credentials(user_params[:email], user_params[:password])
+    render json: @user.email
   end
 
   private
