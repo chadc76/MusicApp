@@ -1,10 +1,7 @@
-<% action_url = log_in ? new_session_url : new_user_url %>
+<% action_url = log_in ? session_url : new_user_url %>
 <% submit_text = log_in ? "Log in!" : "Sign up!" %>
 <form action="<%= action_url %>" method="post">
-  <input 
-      type="hidden" 
-      name="authenticity_token"
-      value="<%= form_authenticity_token %>">
+  <%= auth_token %>
   
   <label for="user_email">Email</label>
   <input type="text" name="user[email]" id="user_email">
