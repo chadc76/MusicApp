@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in?
+  before_action :logged_in?, except: [:show]
 
   def new
     @user = User.new
@@ -20,7 +20,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    render json: @user.email
+    # fail
+    render :show
   end
 
   private
