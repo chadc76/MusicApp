@@ -10,5 +10,6 @@
 #  updated_at      :datetime         not null
 #
 class User < ApplicationRecord
-  
+  validates :email, :session_token, presence: true
+  validates :email, :session_token, :password_digest, uniqueness: true
 end
