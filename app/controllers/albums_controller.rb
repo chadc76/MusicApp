@@ -35,7 +35,10 @@ class AlbumsController < ApplicationController
   end
 
   def destroy
-
+    @album = Album.find_by(id: params[:id])
+    @album.destroy
+    flash[:notice] = "#{@album.title} has been deleted!"
+    redirect_to band_url(@album.band_id)
   end
 
   private
