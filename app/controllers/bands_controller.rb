@@ -27,12 +27,12 @@ class BandsController < ApplicationController
   end
 
   def edit
-    @band = Band.find(params[:id])
+    @band = Band.find_by(id: params[:id])
     render :edit
   end
 
   def update
-    @band = Band.find(params[:id])
+    @band = Band.find_by(id: params[:id])
     
     if @band.update(band_params)
       redirect_to band_url(@band)
@@ -43,7 +43,7 @@ class BandsController < ApplicationController
   end
 
   def destroy
-    @band = Band.find(params[:id])
+    @band = Band.find_by(id: params[:id])
     @band.destroy
     flash[:notice] = "#{@band.name} has been deleted!"
     redirect_to bands_url

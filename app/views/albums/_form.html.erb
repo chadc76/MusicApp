@@ -1,0 +1,58 @@
+<% action_url = album.persisted? ? album_url(album) : albums_url %>
+<% submit_text = album.persisted? ? "Update Album!" : "Add Album!" %>
+<form action="<%= action_url %>" method="post">
+  <% if album.persisted? %>
+    <input type="hidden" name="_method" value="patch"">
+  <% end %>
+
+  <%= auth_token %>
+
+  <label for="album_band">Band:</label>
+  <select name="album[band_id]" id="album_band">
+    <option disabled <%= album.band_id ? "" : "selected" %>>--Select a Band--</option>
+    <% Band.all.each do |b| %>
+      <option 
+        value="<%= b.id %>" 
+        <%= current_band.id == b.id ? "selected" : "" %>
+        ><%= b.name %></option>
+    <% end %>
+  </select>
+  <br>
+
+  <label for="album_title">Title:</label>
+  <input 
+    type="text" 
+    name="album[title]" 
+    id="album_title" 
+    value="<%= album.title %>">
+
+  <br>
+
+  <label for="album_year">Year:</label>
+  <input 
+    type="number" 
+    name="album[year]" 
+    id="album_year" 
+    value="<%= album.year %>">
+
+  <br>
+
+  <input 
+    type="radio" 
+    name="album[live]" 
+    id="album_live_button" 
+    value="true"
+    <%= album.live ? "checked" : "" %>>
+  <label for="album_live_button">Live Album</label>
+  <input 
+    type="radio" 
+    name="album[live]" 
+    id="album_studio_button" 
+    value="false"
+    <%= album.live ? "checked" : "" %>>
+  <label for="album_live_button">Studio Album</label>
+
+  <br>
+
+  <input type="submit" value="<%= submit_text %>">
+</form>
