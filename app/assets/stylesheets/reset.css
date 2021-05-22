@@ -32,7 +32,7 @@ h2 {
 }
 
 .main {
-  margin: 200px;
+  margin: 100px;
 }
 
 .header-list {
@@ -56,9 +56,8 @@ ul {
 
 .centered-box {
   width: 500px;
-  margin: 50px 0;
+  margin-left: 50px;
   text-align: center;
-  padding: 50px;
 }
 
 nav {
@@ -71,7 +70,9 @@ nav {
   padding: 0 20px;
 }
 
-.header-list-item {
+.header-list-item, 
+.links,
+input[type="submit"] {
   margin: 5px;
   padding: 5px;
   background-color: lightgray;
@@ -94,4 +95,21 @@ tr {
 
 .year {
   padding-left: 10px;
+}
+
+.show-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+a,
+button,
+input[type="submit"] {
+  cursor: pointer;
+}
+
+input[type="submit"]:hover,
+a:hover,
+button:hover {
+  font-weight: bolder;
 }
