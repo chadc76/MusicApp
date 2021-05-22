@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user
+  helper_method :current_user, :current_band
 
   def log_in_user!(user)
     user.reset_session_token!
@@ -12,5 +12,9 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     redirect_to user_url(current_user) if !current_user.nil?
+  end
+
+  def current_band
+    @current_band ||= Band.find_by(id: params[:band_id])
   end
 end
