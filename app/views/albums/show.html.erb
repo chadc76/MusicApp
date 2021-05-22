@@ -1,0 +1,13 @@
+<section class="page">
+  <div class="centered-box">
+    <h1><%= @album.title %></h1>
+    <ul>
+      <li>By: <%= @album.band.name %></li>
+      <li>Released: <%= @album.year %></li>
+      <li><%= @album.live ? "Live Version" : "Studio Album" %></li>
+    </ul>
+    <%= button_to "Edit Album", edit_album_url(@album), method: :get  %>
+    <%= button_to "Delete Album", album_url, method: :delete %>
+    <%= button_to "Band index page", bands_url, method: :get  %>
+  </div>
+</section>
