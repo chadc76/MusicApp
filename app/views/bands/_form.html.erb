@@ -1,5 +1,5 @@
 <% action_url = band.persisted? ? band_url(band) : bands_url %>
-<% submit_text = band.persisted? ? "Update Band!" : "Create Band!" %>
+<% submit_text = band.persisted? ? "Update Band!" : "Add Band!" %>
 <form action="<%= action_url %>" method="post">
   <% if band.persisted? %>
     <input type="hidden" name="_method" value="patch"">
