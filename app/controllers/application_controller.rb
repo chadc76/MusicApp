@@ -15,6 +15,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_band
-    @current_band ||= Band.find_by(id: params[:band_id])
+    @current_band = Band.find_by(id: params[:band_id])
   end
 end
