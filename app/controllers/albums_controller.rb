@@ -12,7 +12,7 @@ class AlbumsController < ApplicationController
   def create
     @album = Album.new(album_params)
     if @album.save
-      redirect_to band_url(@album.band_id)
+      redirect_to album_url(@album)
     else
       flash.now[:errors] = @album.errors.full_messages
       render :new
@@ -20,11 +20,18 @@ class AlbumsController < ApplicationController
   end
 
   def edit
-
+    @album = Album.find_by(id: params[:id])
+    render :edit
   end
 
   def update
-    
+    @album = Album.find_by(id: params[:id])
+    if @album.update(album_params)
+      redirect_to album_url(@album)
+    else
+      flash.now[:errors] = @album.errors.full_messages
+      render :edit
+    end
   end
 
   def destroy
