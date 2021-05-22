@@ -1,5 +1,8 @@
 <section class="page">
   <div class="centered-box">
     <h1><%= @band.name %></h1>
+    <%= button_to "Edit Band", edit_band_url(@band), method: :get  %>
+    <%= button_to "Delete Band", band_url, method: :delete %>
+    <%= button_to "Band index page", bands_url, method: :get  %>
   </div>
 </section>
