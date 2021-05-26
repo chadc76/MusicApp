@@ -11,6 +11,9 @@ class UsersController < ApplicationController
 
     if @user.save
       log_in_user!(@user)
+
+      msg = UserMailer.activation_email(@user)
+      msg.deliver_now
     else
       flash[:error] = @user.errors.full_messages
       render :new
