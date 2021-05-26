@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   end
 
   resources :tracks, except: %i(new index)
+
+  resource :notes, only: %i(create destroy)
   
   root to: 'sessions#new'
 end
