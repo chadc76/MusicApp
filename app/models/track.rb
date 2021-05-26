@@ -23,4 +23,10 @@ class Track < ApplicationRecord
   has_one :band,
     through: :album,
     source: :band
+
+  has_many :notes,
+    dependent: :destroy,
+    foreign_key: :track_id,
+    primary_key: :id,
+    class_name: :Note
 end

@@ -18,6 +18,12 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
+  has_many :notes,
+    dependent: :destroy,
+    foreign_key: :user_id,
+    primary_key: :id,
+    class_name: :Note
+
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
     return nil if user.nil?
