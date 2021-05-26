@@ -45,10 +45,10 @@ class User < ApplicationRecord
     BCrypt::Password.new(self.password_digest).is_password?(pw)
   end
 
-  def reset_session_token!
-    self.session_token = self.class.generate_token
+  def reset_token!(token)
+    self.send(token + "=", self.class.generate_token)
     self.save
-    self.session_token
+    self.send(token)
   end
 
   private
