@@ -1,3 +1,4 @@
 <h2 class="page-header">Sign-in</h2>
-<%= render 'shared/errors' %>
+<%= render 'shared/flashes', types: :notice %>
+<%= render 'shared/flashes', types: :errors %>
 <%= render 'shared/form', log_in: true%>

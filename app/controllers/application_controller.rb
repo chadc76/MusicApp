@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
 
   def current_user_admin?
     if !current_user.admin
-      flash[:notice] = ['You need Admin Priviledges to complete this action']
+      flash[:notice] = ["You need Admin Privileges to complete this action"]
       redirect_to bands_url
     end
   end

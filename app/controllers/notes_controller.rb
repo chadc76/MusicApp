@@ -17,7 +17,7 @@ class NotesController < ApplicationController
   def destroy
     @note = Note.find_by(id: params[:id])
     @note.destroy
-    flash[:notice] = ["Your note has been deleted"]
+    flash[:notice] = ["The note has been deleted"]
     redirect_to track_url(@note.track_id)
   end
 

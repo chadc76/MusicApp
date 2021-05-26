@@ -1,5 +1,6 @@
-<% if flash[:errors] %>
-<% flash[:errors].each do |error| %>
-  <pre class="flash"><%= error %></pre>
-<% end %>
-<% end %>
+<% symbol = types == :error ? :errors : :notice %>
+<% if flash[symbol] %>
+  <% flash[symbol].each do |f| %>
+    <pre class="flash"><%= f %></pre>
+  <% end %>
+<% end %> 
