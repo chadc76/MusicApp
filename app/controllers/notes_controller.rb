@@ -1,5 +1,6 @@
 class NotesController < ApplicationController
   before_action :must_be_logged_in
+  before_action :must_be_author, only: [:destroy]
 
   def create
     @note = Note.new(note_params)
