@@ -22,4 +22,8 @@ module ApplicationHelper
 
     selected
   end
+
+  def is_author?(note)
+    note.user_id == current_user.id 
+  end
 end
