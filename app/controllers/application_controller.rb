@@ -21,4 +21,11 @@ class ApplicationController < ActionController::Base
   def current_album
     @current_album = Album.find_by(id: params[:album_id])
   end
+
+  def must_be_logged_in
+    if current_user.nil?
+      flash[:errors] = ["You must be logged in to continue"]
+      redirect_to new_session_url
+    end 
+  end
 end
