@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
   before_action :must_be_logged_in
-  before_action :must_be_author, only: [:destroy]
+  before_action :must_be_author_or_admin, only: [:destroy]
 
   def create
     @note = Note.new(note_params)
@@ -27,8 +27,9 @@ class NotesController < ApplicationController
     params.require(:note).permit(:track_id, :content)
   end
 
-  def must_be_author
+  def must_be_author_or_admin
     return if current_user.id == params[:id].to_i
-    render text: "You cannot delete someone else's note", status: :unprocessable_entity
+    return if current_user.admin
+    render text: "You cannot delete this note", status: :unprocessable_entity
   end
 end
