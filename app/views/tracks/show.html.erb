@@ -1,0 +1,14 @@
+<section class="page">
+  <div class="centered-box">
+    <h1 class="page-header"
+    ><% title = 
+    @track.bonus_track ? @track.title + "(Bonus track)" : @track.title %><%= title %></h1>
+
+    <%= flash[:notice] %>
+    <%= @track.lyrics %>
+    
+    <%= button_to "Edit Track", edit_track_url(@track), method: :get  %>
+    <%= button_to "Delete Track", track_url, method: :delete %>
+    <%= button_to "Album page", album_url(@track.album), method: :get  %>
+  </div>
+</section>

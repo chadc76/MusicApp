@@ -12,4 +12,14 @@ module ApplicationHelper
 
     selected
   end
+
+  def album_selector(track, album)
+    if track.persisted?
+      selected = track.album_id == album.id ? "selected" : ""
+    else
+      selected = current_album.id == album.id ? "selected" : ""
+    end
+
+    selected
+  end
 end
