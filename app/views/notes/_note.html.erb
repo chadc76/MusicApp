@@ -2,8 +2,8 @@
   <p><%= note.content %></p>
   <div class="note-item-info">
     <p>Authored by: <%= note.author.email %></p>
-    <% if is_author?(note) %>
-      <%= button_to "Destroy Note", note_url(note), method: :destroy %>
+    <% if is_author?(note) || @current_user.admin %>
+      <%= button_to "Destroy Note", note_url(note), method: :delete %>
     <% end %>
   </div>
 </div> 

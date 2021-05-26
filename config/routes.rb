@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   resources :tracks, except: %i(new index)
 
-  resource :notes, only: %i(create destroy)
+  resources :notes, only: %i(create destroy)
   
   root to: 'sessions#new'
 end
