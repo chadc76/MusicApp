@@ -1,5 +1,6 @@
 class BandsController < ApplicationController
   before_action :must_be_logged_in
+  before_action :current_user_admin?, except: [:show, :index]
   
   def index
     @bands = Band.all

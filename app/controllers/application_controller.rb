@@ -39,4 +39,11 @@ class ApplicationController < ActionController::Base
       redirect_to new_session_url
     end 
   end
+
+  def current_user_admin?
+    if !current_user.admin
+      flash[:notice] = ['You need Admin Priviledges to complete this action']
+      redirect_to bands_url
+    end
+  end
 end

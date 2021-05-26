@@ -1,5 +1,6 @@
 class AlbumsController < ApplicationController
   before_action :must_be_logged_in
+  before_action :current_user_admin?, except: [:show]
   
   def show
     @album = Album.find_by(id: params[:id])

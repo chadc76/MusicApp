@@ -1,5 +1,6 @@
 class TracksController < ApplicationController
   before_action :must_be_logged_in
+  before_action :current_user_admin?, except: [:show]
   
   def show
     @track = Track.find_by(id: params[:id])
