@@ -1,7 +1,7 @@
 <%= flash[:notice] %>
 <h1 class="page-header"><% title = @album.live ? @album.title + "(Live)" : @album.title %><%= title %></h1>
 
-<%= render 'shared/flashes', types: :notices %>
+<%= render 'shared/flashes', types: :notice %>
 
 <ul class="main-list">
   <% tracks = @album.tracks %>

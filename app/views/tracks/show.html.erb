@@ -1,6 +1,6 @@
 <h1 class="page-header"><% title = @track.bonus_track ? @track.title + "(Bonus track)" : @track.title %><%= title %></h1>
 
-<%= render 'shared/flashes', types: :notices %>
+<%= render 'shared/flashes', types: :notice %>
 
 <%= ugly_lyrics(@track.lyrics) %>
 

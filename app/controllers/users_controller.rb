@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       msg = UserMailer.activation_email(@user)
       msg.deliver_now
     else
-      flash[:error] = @user.errors.full_messages
+      flash.now[:errors] = @user.errors.full_messages
       render :new
     end
   end
