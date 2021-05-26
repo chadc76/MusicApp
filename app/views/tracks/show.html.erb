@@ -2,15 +2,15 @@
 
 <pre class="lyrics"><%= @track.lyrics %></pre>
 
-<!-- <h4 class="sub-header">New Note</h4>
+<h4 class="sub-header">New Note</h4>
 
-<%#= render 'notes/form', track_id: @track.id %>
+<%= render 'notes/form', track_id: @track.id %>
 
 <h4 class="sub-header">Notes</h4>
 
-<%# @track.notes.each do |note| %>
-  <%#= render 'notes/note', note: note %>
-<%# end %> -->
+<% @track.notes.each do |note| %>
+  <%= render 'notes/note', note: note %>
+<% end %>
 
 <h4 class="sub-header">Links</h4>
 
