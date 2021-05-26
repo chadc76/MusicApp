@@ -26,4 +26,12 @@ module ApplicationHelper
   def is_author?(note)
     note.user_id == current_user.id 
   end
+
+  def ugly_lyrics(lyrics)
+    arr = lyrics.split("\n")
+
+   lyrics =  arr.map {|l| "&#9835; #{h(l)}" }.join("\n")
+
+   "<pre class=\"lyrics\">#{lyrics}</pre>".html_safe
+  end
 end
