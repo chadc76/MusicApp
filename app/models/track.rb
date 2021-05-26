@@ -14,6 +14,7 @@
 class Track < ApplicationRecord
   validates :title, :ord, :album_id, presence: true
   validates :ord, uniqueness: { scope: :album_id }
+  validate :ord_greater_than_zero
   
   belongs_to :album,
     foreign_key: :album_id,
@@ -29,4 +30,12 @@ class Track < ApplicationRecord
     foreign_key: :track_id,
     primary_key: :id,
     class_name: :Note
+
+  private
+
+  def ord_greater_than_zero
+    return if self.ord > 0
+
+    errors.add(:ord, "must cannot be less than 1")
+  end
 end
