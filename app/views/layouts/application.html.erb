@@ -21,7 +21,14 @@
 
       <% if current_user %>
         <nav>
+          <% if current_user.admin %>
+          <div class="admin-header">
+            <a class="button" href="<%=bands_url %>">Take Me Home</a>
+            <a class="button" href="<%=users_url %>">Take Me To Users</a>
+          </div>
+        <% else %>
           <a class="button" href="<%=bands_url %>">Take Me Home</a>
+        <% end %>
           <div class="user-detail">
             <p>Logged in as: <%=current_user.email%></p>
             <%= button_to "Sign Out", session_url, method: :delete %>

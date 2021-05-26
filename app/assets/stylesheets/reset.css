@@ -203,16 +203,24 @@ p {
   color: red;
 }
 
-.note-item {
+.note-item,
+.user-item {
   width: 400px;
 }
 
-.note-item p {
+.note-item p,
+.user-item p {
   display: block;
   margin-bottom: 20px;
 }
 
-.note-item .note-item-info {
+.note-item .note-item-info,
+.user-item .user-item-info,
+.admin-header {
   display: flex;
   justify-content: space-between;
+}
+
+.admin-header {
+  width: 325px;
 }
