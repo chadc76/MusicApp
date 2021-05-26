@@ -17,4 +17,10 @@ class Album < ApplicationRecord
     foreign_key: :band_id,
     primary_key: :id,
     class_name: :Band
+
+  has_many :tracks,
+    dependent: :destroy,
+    primary_key: :id,
+    foreign_key: :album_id,
+    class_name: :Track
 end
