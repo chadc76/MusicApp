@@ -1,0 +1,6 @@
+<h1 class="page-header">Users</h1>
+
+<%= render 'shared/flashes', types: :notices %>
+<% @users.each do |user| %>
+  <%= render 'user', user: user %>
+<% end %> 

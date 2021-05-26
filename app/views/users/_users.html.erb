@@ -1,0 +1,10 @@
+<div class="note-item">
+  <div class="note-item-info">
+    <p><%= user.email %></p>
+    <% if user.admin %>
+      <%= link_to "Remove Admin", remove_admin_user_url(user), class: "button" %>
+    <% else %>
+      <%= link_to "Make Admin", make_admin_user_url(user), class: "button" %>
+    <% end %>
+  </div>
+</div> 
