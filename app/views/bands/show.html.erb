@@ -1,7 +1,6 @@
-<%= flash[:notice] %>
 <h1 class="page-header"><%= @band.name %></h1>
 
-<pre class="flash"><%= flash[:notice] %></pre>
+<%= render 'shared/flashes', types: :notices %>
 
 <h4 class="sub-header">Albums</h1>
 
@@ -19,8 +18,10 @@
 <h4 class="sub-header">Links</h1>
 
 <ul class="page-links">
- <li><%= link_to 'New Album', new_band_album_url(@band), class: "button" %></li>
- <li><%= link_to "Edit Band", edit_band_url(@band), class: "button" %></li>
- <li><%= button_to "Destroy Band", band_url, method: :delete %></li>
- <li><%= link_to "All Bands", bands_url, class: "button" %></li>
+  <% if current_user.admin %>
+    <li><%= link_to 'New Album', new_band_album_url(@band), class: "button" %><li>
+    <li><%= link_to "Edit Band", edit_band_url(@band), class: "button" %></li>
+    <li><%= button_to "Destroy Band", band_url, method: :delete %></li>
+  <% end %>
+  <li><%= link_to "All Bands", bands_url, class: "button" %></li>
 </ul>

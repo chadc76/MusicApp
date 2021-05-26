@@ -1,6 +1,6 @@
 <h1 class="page-header">Bands</h1>
 
-<pre class="flash"><%= flash[:notice] %></pre>
+<%= render 'shared/flashes', types: :notices %>
 
 <ul class="main-list">
   <% if @bands.empty?%>
@@ -10,5 +10,7 @@
   <% end %>
 </ul>
 
-<h4 class="sub-header">Links</h4>
-<a class="button" href="<%= new_band_url %>">New Band</a>
+<% if current_user.admin %>
+  <h4 class="sub-header">Links</h4>
+  <a class="button" href="<%= new_band_url %>">New Band</a>
+<% end %> 
