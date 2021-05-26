@@ -30,7 +30,8 @@ class ApplicationController < ActionController::Base
   end
 
   def current_album
-    @current_album = Album.find_by(id: params[:album_id])
+    @current_album = 
+      params[:album_id] ? Album.find_by(id: params[:album_id]) : Album.find_by(id: params[:track][:album_id])
   end
 
   def must_be_logged_in

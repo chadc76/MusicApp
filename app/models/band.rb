@@ -19,4 +19,15 @@ class Band < ApplicationRecord
   has_many :tracks,
     through: :albums,
     source: :tracks
+
+  has_many :taggings,
+    as: :taggable,
+    dependent: :destroy,
+    primary_key: :id,
+    foreign_key: :taggable_id,
+    class_name: :Tagging
+
+  has_many :tags,
+    through: :taggings,
+    source: :tag
 end

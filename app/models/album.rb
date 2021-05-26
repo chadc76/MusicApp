@@ -23,4 +23,15 @@ class Album < ApplicationRecord
     primary_key: :id,
     foreign_key: :album_id,
     class_name: :Track
+
+  has_many :taggings,
+    as: :taggable,
+    dependent: :destroy,
+    primary_key: :id,
+    foreign_key: :taggable_id,
+    class_name: :Tagging
+
+  has_many :tags,
+    through: :taggings,
+    source: :tag
 end
