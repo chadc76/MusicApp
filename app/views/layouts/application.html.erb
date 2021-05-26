@@ -16,22 +16,20 @@
   </head>
 
   <body>
-    <nav class="header-content">
+    <div class="main-content">
       <h1 class="main-logo">Music App</h1>
 
-      <ul class="header-list">
-        <% if current_user %>
-        <li><%= button_to "Log Out!", session_url, method: :delete %></li>
-        <% else %>
-        <li class="header-list-item"><%= link_to "Log in!", new_session_url %></li>
-        <li class="header-list-item"><%= link_to "Sign up!", new_user_url %></li>
-        <% end %>
-      </ul>
-    </nav>
-    
-    <main class="main">
+      <% if current_user %>
+        <nav>
+          <a class="button" href="<%=bands_url %>">Take Me Home</a>
+          <div class="user-detail">
+            <p>Logged in as: <%=current_user.email%></p>
+            <%= button_to "Sign Out", session_url, method: :delete %>
+          </div>
+        </nav>
+      <% end %>
+        
       <%= yield %>
-    </main>
-
+    </div>
   </body>
 </html>

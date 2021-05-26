@@ -1,4 +1,4 @@
-html, body, div, span, h1, h2, h3, h4, a, p, ol, ul, li, form, label, article, aside, figure, figcaption, footer, header, nav , table{
+html, body, div, span, h1, h2, h3, h4, a, p, ol, ul, li, form, label, article, aside, figure, figcaption, footer, header, nav {
   margin: 0;
   padding: 0;
   border: 0;
@@ -9,6 +9,10 @@ html, body, div, span, h1, h2, h3, h4, a, p, ol, ul, li, form, label, article, a
   box-sizing: content-box;
 }
 
+body {
+  background-color: #111;
+}
+
 h1 {
   font-size: 60px;
 }
@@ -17,26 +21,22 @@ h2 {
   font-size: 30px;
 }
 
-.main-logo {
+h1, 
+h2, 
+h3, 
+h4 {
   font-family: 'Bungee Inline', cursive;
 }
 
 .page-header {
-  font-family: 'Bungee Inline', cursive;
-  padding-bottom: 20px;
+  font-size: 40px;
+  color: #39BAAC;
+  margin-bottom: 30px;
 }
 
 .header-content {
   display: flex;
   justify-content: space-around;
-}
-
-.main {
-  margin: 100px;
-}
-
-.header-list {
-  display: flex;
 }
 
 ul {
@@ -49,67 +49,170 @@ ul {
   clear: both;
 }
 
-.page {
+.main-content nav {
+  width: 100%;
   display: flex;
   justify-content: space-around;
 }
 
-.centered-box {
-  width: 500px;
-  margin-left: 50px;
-  text-align: center;
-}
-
-nav {
-  width: 100%;
-  height: 60px;
+.main-content nav .user-detail {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-sizing: border-box;
-  padding: 0 20px;
 }
 
-.header-list-item, 
-.links,
-input[type="submit"] {
-  margin: 5px;
-  padding: 5px;
-  background-color: lightgray;
-  border-radius: 10px;
-  border: 1px solid black
+.main-content nav .user-detail p {
+  margin: 10px;
 }
-
-.email-label {
-  margin-left: 23px;
-}
-
-table {
-  margin: auto;
-  background-color: white;
-}
-
-tr {
-  text-align: left;
-}
-
-.year {
-  padding-left: 10px;
-}
-
-.show-buttons {
-  display: flex;
-  justify-content: center;
-}
-
-a,
-button,
-input[type="submit"] {
-  cursor: pointer;
+ 
+.button {
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: skyblue;
+  color: #000;
+  margin-bottom: 20px;
 }
 
 input[type="submit"]:hover,
-a:hover,
-button:hover {
-  font-weight: bolder;
+.button:hover {
+  background-color: dodgerblue;
+  cursor: pointer;
+}
+
+a:hover, input[type='submit']:hover {
+    transition: .5s;
+    color: white;
+}
+
+.form input[type="submit"] {
+  align-self: flex-end;
+}
+
+input[type="submit"] {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: skyblue;
+  margin-bottom: 20px;
+}
+
+
+.main-content {
+  width: 800px;
+  min-height: 100vh;
+  margin: auto;
+  padding: 30px;
+  border: solid grey;
+  border-width: 0 5px;
+  background-color: #343030;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-content .main-logo {
+  font-size: 75px;
+  margin-bottom: 30px;
+  color: #FDDB61;
+}
+
+.form {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+p, a, input {
+  font-family: 'Raleway', sans-serif;
+  font-size: 18px;
+}
+
+.form p {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+p {
+  color: #fff;
+}
+
+.form p label {
+  padding-right: 10px;
+  color: white;
+}
+
+.form p label, .form p input {
+  display: block;
+}
+
+.main-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.main-list li {
+  width: calc(33% - 40px);
+  height: 100px;
+  margin: 0 20px 20px 0;
+  border-radius: 10px;
+  background-color: #FDDB61;
+}
+
+.main-list li a {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.main-list li a p {
+  width: 100%;
+  text-align: center;
+  font-size: 25px;
+  color: black;
+}
+
+.main-list li:hover {
+  background-color: orange;
+}
+
+.sub-header {
+  font-size: 25px;
+  color: coral;
+  margin: 20px 0;
+}
+
+.page-links {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.lyrics {
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+  color: white;
+}
+
+.flash {
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+  color: red;
+}
+
+.note-item {
+  width: 400px;
+}
+
+.note-item p {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.note-item .note-item-info {
+  display: flex;
+  justify-content: space-between;
 }

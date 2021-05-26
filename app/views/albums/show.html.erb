@@ -1,28 +1,25 @@
-<section class="page">
-  <div class="centered-box">
-    <h1><%= @album.title %></h1>
-    <ul>
-      <li>By: <%= @album.band.name %></li>
-      <li>Released: <%= @album.year %></li>
-      <li><%= @album.live ? "Live Version" : "Studio Album" %></li>
-    </ul>
+<%= flash[:notice] %>
+<h1 class="page-header"><% title = @album.live ? @album.title + "(Live)" : @album.title %><%= title %></h1>
 
-    <h1>Tracks</h1>
-    <table>
-      <tbody>
-        <tr>
-          <th class="year">Ord</th>
-          <th>Title</th>
-        </tr>
-        <% @album.tracks.each do |track| %>
-        <%= render 'track_tr', track: track %>
-        <% end %>
-      </tbody>
-    </table>
+<pre class="flash"><%= flash[:notice] %></pre>
 
-    <%= button_to 'New Track', new_album_track_url(@album), method: :get %>
-    <%= button_to "Edit Album", edit_album_url(@album), method: :get  %>
-    <%= button_to "Delete Album", album_url, method: :delete %>
-    <%= button_to "Band index page", bands_url, method: :get  %>
-  </div>
-</section>
+<ul class="main-list">
+  <% tracks = @album.tracks %>
+  <% if tracks.empty?%>
+    <p>This album has no tracks... yet!</p>
+  <% else%>
+    <% tracks.each do |track| %>
+      <%= render 'tracks', track: track %>
+    <% end %>
+  <% end %>
+
+</ul>
+
+<h4 class="sub-header">Links</h1>
+
+<ul class="page-links">
+  <li><%= link_to 'New Track', new_album_track_url(@album), class: "button" %><li>
+  <li><%= link_to "Edit Album", edit_album_url(@album), class: "button" %></li>
+  <li><%= button_to "Destroy Album", album_url, method: :delete %></li>
+  <li><%= link_to "Back to #{@album.band.name}", band_url(@album.band_id), class: "button" %></li>
+</ul>

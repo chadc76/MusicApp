@@ -1,9 +1,14 @@
-<section class="page">
-  <div class="centered-box">
-    <h1>All Of The Bands!</h1>
-    <%= flash[:notice] %>
-    <ul>
-      <%= render @bands %>
-    </ul>
-  </div>
-</section>
+<h1 class="page-header">Bands</h1>
+
+<pre class="flash"><%= flash[:notice] %></pre>
+
+<ul class="main-list">
+  <% if @bands.empty?%>
+    <p>There are no bands... yet!</p>
+  <% else%>
+    <%= render @bands %>
+  <% end %>
+</ul>
+
+<h4 class="sub-header">Links</h4>
+<a class="button" href="<%= new_band_url %>">New Band</a>

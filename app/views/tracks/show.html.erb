@@ -1,14 +1,21 @@
-<section class="page">
-  <div class="centered-box">
-    <h1 class="page-header"
-    ><% title = 
-    @track.bonus_track ? @track.title + "(Bonus track)" : @track.title %><%= title %></h1>
+<h1 class="page-header"><% title = @track.bonus_track ? @track.title + "(Bonus track)" : @track.title %><%= title %></h1>
 
-    <%= flash[:notice] %>
-    <%= @track.lyrics %>
-    
-    <%= button_to "Edit Track", edit_track_url(@track), method: :get  %>
-    <%= button_to "Delete Track", track_url, method: :delete %>
-    <%= button_to "Album page", album_url(@track.album), method: :get  %>
-  </div>
-</section>
+<pre class="lyrics"><%= @track.lyrics %></pre>
+
+<h4 class="sub-header">New Note</h4>
+
+<%= render 'notes/form', track_id: @track.id %>
+
+<h4 class="sub-header">Notes</h4>
+
+<% @track.notes.each do |note| %>
+  <%= render 'notes/note', note: note %>
+<% end %>
+
+<h4 class="sub-header">Links</h4>
+
+<ul class="page-links">
+  <li><%= link_to "Edit Track", edit_track_url(@track), class: "button" %></li>
+  <li><%= button_to "Destroy Track", track_url, method: :delete %></li>
+  <li><%= link_to "Back To #{@track.album.title}", album_url(@track.album_id), class: "button" %></li>
+</ul>

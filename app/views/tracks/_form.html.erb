@@ -7,60 +7,69 @@
   <%= auth_token %>
 
   
-
-  <label for="track_title">Title</label>
-  <input 
-    type="text" 
-    name="track[title]" 
-    id="track_title" 
-    value="<%= track.title %>">
+  <p>
+    <label for="track_title">Title</label>
+    <input 
+      type="text" 
+      name="track[title]" 
+      id="track_title" 
+      value="<%= track.title %>">
+  </p>
   
-  <br>
+  <p>
+    <label for="track_album">Album</label>
+    <select name="track[album_id]" id="track_album">
+      <option 
+        disabled 
+        <%= track.album_id ? "" : "selected" %>>--Select an Album--</option>
+        <% Album.all.each do |album| %>
+          <option 
+            value="<%= album.id %>"
+            <%= album_selector(track, album) %>
+            ><%= album.title %></option>
+        <% end %>
+    </select>
+  </p>
+
+
+  <p>
+    <label for="track_ord">Track Number</label>
+    <input 
+      type="number" 
+      name="track[ord]" 
+      id="track_ord" 
+      value="<%= track.ord %>">
+  </p>
   
-  <label for="track_album">Album</label>
-  <select name="track[album_id]" id="track_album">
-    <option disabled <%= track.album_id ? "" : "selected" %>>--Select an Album--</option>
-      <% Album.all.each do |album| %>
-        <option 
-          value="<%= album.id %>"
-          <%= album_selector(track, album) %>
-          ><%= album.title %></option>
-      <% end %>
-  </select>
+  <p>
+    <label for="track_regular_button">Standard</label>
+    <input 
+      type="radio" 
+      name="track[bonus_track]" 
+      id="track_regular_button" 
+      value="false"
+      <%= track.bonus_track ? "" : "checked" %>>
 
-  <br>
-
-  <label for="track_ord">Ord (track number)</label>
-  <input 
-    type="number" 
-    name="track[ord]" 
-    id="track_ord" 
-    value="<%= track.ord %>">
-
-  <br>
-
-  <label for="track_regular_button">Standard</label>
-  <input 
-    type="radio" 
-    name="track[bonus_track]" 
-    id="track_regular_button" 
-    value="false"
-    <%= track.bonus_track ? "" : "checked" %>>
-
-  <label for="track_bonus_track_button">Bonus</label>
-  <input 
-    type="radio" 
-    name="track[bonus_track]" 
-    id="track_bonus_track_button" 
-    value="true"
-    <%= track.bonus_track ? "checked" : "" %>>
-
-  <br>
-
-  <label for="track_lyrics">Lyrics</label>
-  <textarea name="track[lyrics]" id="track_lyrics"><%= track.lyrics %></textarea>
+    <label for="track_bonus_track_button">Bonus</label>
+    <input 
+      type="radio" 
+      name="track[bonus_track]" 
+      id="track_bonus_track_button" 
+      value="true"
+      <%= track.bonus_track ? "checked" : "" %>>
+  </p>
   
-  <br>
+  <p>
+    <label for="track_lyrics">Lyrics</label>
+    <textarea 
+      name="track[lyrics]" 
+      id="track_lyrics" 
+      rows="10" 
+      cols="40"
+      ><%= track.lyrics %></textarea>
+  </p>
 
+  
+  
   <input type="submit" value="<%= submit_text %>">
 </form>
