@@ -2,8 +2,19 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :current_band, :current_album
 
   def log_in_user!(user)
+    if !user.activated
+      flash[:errors] = ["Account not activated! Please visit the link in your email to activate this account"]
+      redirect_to new_session_url
+      return
+    end
+
     user.reset_session_token!
     session[:session_token] = user.session_token
+    redirect_to bands_url
+  end
+
+  def log_out_user!
+    session[:session_token] = nil
   end
 
   def current_user

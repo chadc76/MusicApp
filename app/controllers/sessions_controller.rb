@@ -16,9 +16,7 @@ class SessionsController < ApplicationController
       flash.now[:errors] = ["Username and Password did not match"]
       render :new
     else
-      @user.reset_session_token!
-      session[:session_token] = @user.session_token
-      redirect_to user_url(@user)
+      log_in_user!(@user)
     end
   end
 
@@ -28,8 +26,7 @@ class SessionsController < ApplicationController
       return
     end
 
-    current_user.reset_session_token!
-    session[:session_token] = nil
+    log_out_user!
     redirect_to new_session_url
   end
 end
