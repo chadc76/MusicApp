@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :users, only: %i(show new create) do
+  resources :users, only: %i(show new create index) do
     collection do
       get 'activate'
+    end
+    member do 
+      get 'remove_admin'
+      get 'make_admin'
     end
   end
 
