@@ -42,6 +42,8 @@ Rails.application.routes.draw do
   end
 
   resources :notes, only: %i(create destroy)
+
+  resource :search_results, only: %i(create)
   
   root to: 'sessions#new'
 end

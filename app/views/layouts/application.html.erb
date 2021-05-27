@@ -20,18 +20,18 @@
       <h1 class="main-logo">Music App</h1>
 
       <div class="search-bar-container">
-        <form action="">
-          <select class="search-drop-down" name="search_type" id="search[:search_type]">
+        <form action="<%= search_results_url %>" method="post">
+          <%= auth_token %>
+          <select class="search-drop-down" name="search[search_type]">
             <option value="All">All</option>
-            <option value="Albums">Album</option>
-            <option value="Bands">Band</option>
-            <option value="Tracks">Tracks</option>
-            <option value="Tags">Tags</option>
+            <option value="Album">Album</option>
+            <option value="Band">Band</option>
+            <option value="Track">Tracks</option>
+            <option value="Tag">Tags</option>
           </select>
           <input
             type="search" 
-            name="search[input]" 
-            id="search_input" 
+            name="search[search_input]" 
             placeholder="Search.." 
             required>
           <input type="submit" value="Search">
