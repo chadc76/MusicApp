@@ -40,11 +40,21 @@
         <form action="<%= search_results_url %>" method="get">
           <%= auth_token %>
           <select class="search-drop-down" name="search[search_type]">
-            <option value="All">All</option>
-            <option value="Album">Album</option>
-            <option value="Band">Band</option>
-            <option value="Track">Tracks</option>
-            <option value="Tag">Tags</option>
+            <option 
+              value="All" 
+              <%= @search_type == "All" ? "selected" : "" %>>All</option>
+            <option 
+              value="Album" 
+              <%= @search_type == "Album" ? "selected" : "" %>>Albums</option>
+            <option 
+              value="Band" 
+              <%= @search_type == "Band" ? "selected" : "" %>>Bands</option>
+            <option 
+              value="Track" 
+              <%= @search_type == "Track" ? "selected" : "" %>>Tracks</option>
+            <option 
+              value="Tag" 
+              <%= @search_type == "Tag" ? "selected" : "" %>>Tags</option>
           </select>
 
           <% if @search %>

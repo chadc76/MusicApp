@@ -1,3 +1,8 @@
 <li>
-  <a href="#"><p class="tags">#<%= tag.tag %></p></a>
+  <form class="tags" action="<%= search_results_url %>" method="get">
+    <%= auth_token %>
+    <input type="hidden" name="search[search_type]" value="Tag">
+    <input type="hidden" name="search[search_input]" value="<%= tag.tag %>">
+    <input type="submit" value="#<%= tag.tag %>">
+  </form>
 </li>

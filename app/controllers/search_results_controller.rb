@@ -1,6 +1,7 @@
 class SearchResultsController < ApplicationController
   def show
     @search = search_input
+    @search_type = search_type
     case search_type
     when "All"
       @results = search_all
