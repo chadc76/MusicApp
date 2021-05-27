@@ -1,5 +1,6 @@
 class SearchResultsController < ApplicationController
-  def create
+  def show
+    @search = search_input
     case search_type
     when "All"
       @results = search_all
@@ -41,12 +42,12 @@ class SearchResultsController < ApplicationController
 
   def search_tags
     @tag = Tag.find_by(tag: search_input)
-    item_hash = {}
+    item_hash = Hash.new { |h, k| h[k] = [] }
 
     if @tag 
       items = Tagging.includes(:taggable).where("taggings.tag_id = ?", @tag.id)
       items.each do |item|
-        item_hash[item.taggable.class.name] = item.taggable
+        item_hash[item.taggable.class.name] << item.taggable
       end
     end
 

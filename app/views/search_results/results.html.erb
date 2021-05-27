@@ -1,0 +1,19 @@
+<h4 class='page-header'>Results</h4>
+
+<% @results.keys.each do |section| %>
+  <% next if @results[section].empty? %>
+  <h4 class="sub-header"><%= section %>s</h4>
+  <ul class="main-list">
+    <% @results[section].each do |result| %>
+      <% case section %>
+      <% when "Album" %>
+       <li><a href="<%= album_url(result) %>"><p><%= result.title %></p></a></li>
+      <% when "Track" %>
+       <li><a href="<%= track_url(result) %>"><p><%= result.title %></p></a></li>
+      <% when "Band" %>
+        <li><a href="<%= band_url(result) %>"><p><%= result.name %></p></a></li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>
+

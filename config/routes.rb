@@ -43,7 +43,7 @@ Rails.application.routes.draw do
 
   resources :notes, only: %i(create destroy)
 
-  resource :search_results, only: %i(create)
+  resource :search_results, only: %i(show)
   
   root to: 'sessions#new'
 end
