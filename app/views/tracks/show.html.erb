@@ -11,8 +11,20 @@
 <h4 class="sub-header">Notes</h4>
 
 <% @track.notes.each do |note| %>
-  <%= render 'notes/note', note: note %>
+<%= render 'notes/note', note: note %>
 <% end %>
+
+<div class="tags-container">
+  <h4 class="tags-header">Tags</h4>
+  <ul class="page-links">
+    <% tags = @track.tags %>
+    <% if !tags.empty? %>
+      <% tags.each do |tag| %>
+        <%= render 'shared/tags', tag: tag %>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
 
 <h4 class="sub-header">Links</h4>
 

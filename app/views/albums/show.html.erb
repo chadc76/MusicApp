@@ -6,19 +6,31 @@
 <ul class="main-list">
   <% tracks = @album.tracks %>
   <% if tracks.empty?%>
-    <p>This album has no tracks... yet!</p>
+  <p>This album has no tracks... yet!</p>
   <% else%>
-    <% tracks.each do |track| %>
-      <%= render 'tracks', track: track %>
-    <% end %>
+  <% tracks.each do |track| %>
+  <%= render 'tracks', track: track %>
+  <% end %>
   <% end %>
 
 </ul>
 
-<h4 class="sub-header">Links</h1>
+<div class="tags-container">
+  <h4 class="tags-header">Tags</h4>
+  <ul class="page-links">
+    <% tags = @album.tags %>
+    <% if !tags.empty? %>
+      <% tags.each do |tag| %>
+        <%= render 'shared/tags', tag: tag %>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
 
-<ul class="page-links">
-  <% if current_user.admin %>
+<h4 class="sub-header">Links</h1>
+  
+  <ul class="page-links">
+    <% if current_user.admin %>
     <li><%= link_to 'New Track', new_album_track_url(@album), class: "button" %><li>
     <li><%= link_to "Edit Album", edit_album_url(@album), class: "button" %></li>
     <li><%= button_to "Destroy Album", album_url, method: :delete %></li>
