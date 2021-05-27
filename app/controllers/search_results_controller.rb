@@ -1,4 +1,7 @@
 class SearchResultsController < ApplicationController
+  before_action :must_be_logged_in
+  skip_before_action :verify_authenticity_token
+
   def show
     @search = search_input
     @search_type = search_type
@@ -34,11 +37,11 @@ class SearchResultsController < ApplicationController
   end
 
   def search_albums
-    Album.where("albums.title LIKE ? OR albums.year = ?", search_input_with_percent, search_input.to_i)
+    Album.where("upper (albums.title) LIKE upper (?) OR albums.year = ?", search_input_with_percent, search_input.to_i)
   end
 
   def search_bands
-    Band.where("bands.name LIKE ?", search_input_with_percent)
+    Band.where("upper (bands.name) LIKE upper (?)", search_input_with_percent)
   end
 
   def search_tags
@@ -56,7 +59,7 @@ class SearchResultsController < ApplicationController
   end
 
   def search_tracks
-    Track.where("tracks.title LIKE ? OR tracks.lyrics LIKE ?", search_input_with_percent, search_input_with_percent)
+    Track.where("upper (tracks.title) LIKE upper (?) OR upper (tracks.lyrics) LIKE upper (?)", search_input_with_percent, search_input_with_percent)
   end
 
   def search_type

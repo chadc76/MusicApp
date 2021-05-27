@@ -36,43 +36,44 @@
         </nav>
       <% end %>
 
-      <div class="search-bar-container">
-        <form action="<%= search_results_url %>" method="get">
-          <%= auth_token %>
-          <select class="search-drop-down" name="search[search_type]">
-            <option 
-              value="All" 
-              <%= @search_type == "All" ? "selected" : "" %>>All</option>
-            <option 
-              value="Album" 
-              <%= @search_type == "Album" ? "selected" : "" %>>Albums</option>
-            <option 
-              value="Band" 
-              <%= @search_type == "Band" ? "selected" : "" %>>Bands</option>
-            <option 
-              value="Track" 
-              <%= @search_type == "Track" ? "selected" : "" %>>Tracks</option>
-            <option 
-              value="Tag" 
-              <%= @search_type == "Tag" ? "selected" : "" %>>Tags</option>
-          </select>
-
-          <% if @search %>
-            <input
-            type="search" 
-            name="search[search_input]" 
-            value="<%= @search %>"
-            required>
-          <% else %>
-            <input
+      <% if current_user %>
+        <div class="search-bar-container">
+          <form action="<%= search_results_url %>" method="get">
+            <select class="search-drop-down" name="search[search_type]">
+              <option 
+                value="All" 
+                <%= @search_type == "All" ? "selected" : "" %>>All</option>
+              <option 
+                value="Album" 
+                <%= @search_type == "Album" ? "selected" : "" %>>Albums</option>
+              <option 
+                value="Band" 
+                <%= @search_type == "Band" ? "selected" : "" %>>Bands</option>
+              <option 
+                value="Track" 
+                <%= @search_type == "Track" ? "selected" : "" %>>Tracks</option>
+              <option 
+                value="Tag" 
+                <%= @search_type == "Tag" ? "selected" : "" %>>Tags</option>
+            </select>
+  
+            <% if @search %>
+              <input
               type="search" 
               name="search[search_input]" 
-              placeholder="Search.."
+              value="<%= @search %>"
               required>
-          <% end %>
-            <input type="submit" value="Search">
-        </form>
-      </div>
+            <% else %>
+              <input
+                type="search" 
+                name="search[search_input]" 
+                placeholder="Search.."
+                required>
+            <% end %>
+              <input type="submit" value="Search">
+          </form>
+        </div>
+      <% end  %>
         
       <%= yield %>
     </div>

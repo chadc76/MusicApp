@@ -53,11 +53,11 @@ class AlbumsController < ApplicationController
   def tag
     @album = Album.find_by(id: params[:id])
     @tagging = Tagging.new(taggable_id: params[:id], taggable_type: "Album")
-    tag = Tag.find_by(tag: params[:tagging][:tag])
+    tag = Tag.find_by(tag: params[:tagging][:tag].downcase)
     if tag
       @tagging.tag_id = tag.id
     else 
-      tag = Tag.new(tag: params[:tagging][:tag])
+      tag = Tag.new(tag: params[:tagging][:tag].downcase)
       if tag.save
         @tagging.tag_id = tag.id
       else
