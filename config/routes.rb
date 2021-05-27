@@ -14,13 +14,29 @@ Rails.application.routes.draw do
 
   resources :bands do
     resources :albums, only: [:new]
+    member do
+      get 'tags'
+      post 'tag'
+      post 'untag'
+    end
   end
 
   resources :albums, except: %i(new index) do
     resources :tracks, only: [:new]
+    member do
+      get 'tags'
+      post 'tag'
+      post 'untag'
+    end
   end
 
-  resources :tracks, except: %i(new index)
+  resources :tracks, except: %i(new index) do
+    member do
+      get 'tags'
+      post 'tag'
+      post 'untag'
+    end
+  end
 
   resources :notes, only: %i(create destroy)
   
