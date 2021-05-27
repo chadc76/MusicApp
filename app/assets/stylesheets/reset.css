@@ -246,3 +246,20 @@ p {
 .tags:hover {
   color: blue;
 }
+
+
+.tag-links-container {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+}
+
+.remove-tag-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.remove-tag-buttons li {
+  margin-left: 2px;
+}

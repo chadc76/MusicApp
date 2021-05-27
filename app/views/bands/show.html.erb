@@ -27,6 +27,15 @@
   </ul>
 </div>
 
+<ul class="tag-links-container">
+  <% if current_user.admin %>
+    <li><%= link_to 'Add Tags', new_tag_band_url(@band), class: "button" %><li>
+    <% if !@band.tags.empty? %>
+      <li><%= link_to "Remove Tags", edit_tags_band_url(@band), class: "button" %></li>
+    <% end %>
+  <% end %>
+</ul>
+
 <h4 class="sub-header">Links</h1>
 
 <ul class="page-links">

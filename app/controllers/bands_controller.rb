@@ -51,18 +51,46 @@ class BandsController < ApplicationController
     redirect_to bands_url
   end
 
+  def new_tag
+    @tagging = Tagging.new
+    @band = Band.find_by(id: params[:id])
+    render :tag
+  end
+
   def tag
-    tag = Tagging.new(taggable_id: params[:id], taggable_type: "Band", tag_id: params[:tag_id])
+    @band = Band.find_by(id: params[:id])
+    @tagging = Tagging.new(taggable_id: params[:id], taggable_type: "Band")
+    tag = Tag.find_by(tag: params[:tagging][:tag])
     if tag
-      tag.save
+      @tagging.tag_id = tag.id
+    else 
+      tag = Tag.new(tag: params[:tagging][:tag])
+      if tag.save
+        @tagging.tag_id = tag.id
+      else
+        flash.now[:errors] = tag.errors.full_messages
+        redirect_to band_url(params[:id])
+        return
+      end
+    end
+
+    if @tagging.save
+      url = params[:tagging]
       redirect_to band_url(params[:id])
     else
-      flash[:errors] = tag.errors.full_messages
-      redirect_to band_url(params[:id])
+      flash.now[:errors] = @tagging.errors.full_messages
+      render :tag
     end
   end
 
+  def edit_tags
+    @band = Band.includes(:tags).find_by(id: params[:id])
+    @taggings = @band.tags
+    render :untag
+  end
+
   def untag
+    @band = Band.find_by(id: params[:id])
     tag = Tagging.find_by(taggable_id: params[:id], taggable_type: "Band", tag_id: params[:tag_id])
     if tag
       tag.destroy

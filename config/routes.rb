@@ -15,8 +15,10 @@ Rails.application.routes.draw do
   resources :bands do
     resources :albums, only: [:new]
     member do
+      get 'new_tag'
+      get 'edit_tags'
       post 'tag'
-      post 'untag'
+      delete 'untag'
     end
   end
 
