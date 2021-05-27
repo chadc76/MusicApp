@@ -1,0 +1,9 @@
+<h4 class="page-header">Add Tags</h4>
+<%= render 'shared/flashes', types: :notice %>
+<%= render 'shared/flashes', types: :errors %>
+<%= render 'shared/tag_form', 
+  action_url: tag_track_url %>
+
+<ul class="page-links">
+  <li><%= link_to "Back to #{@track.title}", track_url(@track), class: "button" %></li>
+</ul>

@@ -84,7 +84,7 @@ class AlbumsController < ApplicationController
 
   def untag
     @album = Album.find_by(id: params[:id])
-    tag = Tagging.find_by(taggable_id: params[:id], taggable_type: "Band", tag_id: params[:tag_id])
+    tag = Tagging.find_by(taggable_id: params[:id], taggable_type: "Album", tag_id: params[:tag_id])
     if tag
       tag.destroy
       flash[:notice] = ["The Tag has been removed"]

@@ -34,8 +34,10 @@ Rails.application.routes.draw do
 
   resources :tracks, except: %i(new index) do
     member do
+      get 'new_tag'
+      get 'edit_tags'
       post 'tag'
-      post 'untag'
+      delete 'untag'
     end
   end
 

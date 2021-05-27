@@ -4,12 +4,12 @@
   <% @taggings.each do |tag| %>
     <li>
       <%= button_to "#" + tag.tag, 
-        untag_album_url + "?tag_id=#{tag.id}", 
+        untag_track_url + "?tag_id=#{tag.id}", 
         method: :delete %>
       </li>
   <% end %>
 </ul>
 
 <ul class="page-links">
-  <li><%= link_to "Back to #{@album.title}", album_url(@album), class: "button" %></li>
+  <li><%= link_to "Back to #{@track.title}", track_url(@track), class: "button" %></li>
 </ul>

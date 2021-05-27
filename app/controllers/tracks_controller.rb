@@ -43,6 +43,56 @@ class TracksController < ApplicationController
     flash[:notice] = ["#{@track.title} has been deleted!"]
     redirect_to album_url(@track.album_id)
   end
+  
+  def new_tag
+    @tagging = Tagging.new
+    @track = Track.find_by(id: params[:id])
+    render :tag
+  end
+
+  def tag
+    @track = Track.find_by(id: params[:id])
+    @tagging = Tagging.new(taggable_id: params[:id], taggable_type: "Track")
+    tag = Tag.find_by(tag: params[:tagging][:tag])
+    if tag
+      @tagging.tag_id = tag.id
+    else 
+      tag = Tag.new(tag: params[:tagging][:tag])
+      if tag.save
+        @tagging.tag_id = tag.id
+      else
+        flash.now[:errors] = tag.errors.full_messages
+        redirect_to track_url(params[:id])
+        return
+      end
+    end
+
+    if @tagging.save
+      url = params[:tagging]
+      redirect_to track_url(params[:id])
+    else
+      flash.now[:errors] = @tagging.errors.full_messages
+      render :tag
+    end
+  end
+
+  def edit_tags
+    @track = Track.includes(:tags).find_by(id: params[:id])
+    @taggings = @track.tags
+    render :untag
+  end
+
+  def untag
+    @track = Track.find_by(id: params[:id])
+    tag = Tagging.find_by(taggable_id: params[:id], taggable_type: "Track", tag_id: params[:tag_id])
+    if tag
+      tag.destroy
+      flash[:notice] = ["The Tag has been removed"]
+      redirect_to track_url(params[:id])
+    else
+      redirect_to track_url(params[:id])
+    end
+  end
 
   private
 
