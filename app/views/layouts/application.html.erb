@@ -19,6 +19,25 @@
     <div class="main-content">
       <h1 class="main-logo">Music App</h1>
 
+      <div class="search-bar-container">
+        <form action="">
+          <select class="search-drop-down" name="search_type" id="search[:search_type]">
+            <option value="All">All</option>
+            <option value="Albums">Album</option>
+            <option value="Bands">Band</option>
+            <option value="Tracks">Tracks</option>
+            <option value="Tags">Tags</option>
+          </select>
+          <input
+            type="search" 
+            name="search[input]" 
+            id="search_input" 
+            placeholder="Search.." 
+            required>
+          <input type="submit" value="Search">
+        </form>
+      </div>
+
       <% if current_user %>
         <nav>
           <% if current_user.admin %>
@@ -28,7 +47,7 @@
           </div>
         <% else %>
           <a class="button" href="<%=bands_url %>">Take Me Home</a>
-        <% end %>
+          <% end %>
           <div class="user-detail">
             <p>Logged in as: <%=current_user.email%></p>
             <%= button_to "Sign Out", session_url, method: :delete %>

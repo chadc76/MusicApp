@@ -263,3 +263,29 @@ p {
 .remove-tag-buttons li {
   margin-left: 2px;
 }
+
+.search-bar-container {
+  display: flex;
+  width: 100%;
+  padding: 8px;
+}
+
+.search-bar-container form {
+  width: 100%;
+}
+.search-bar-container input[type="search"] {
+  height: 40px;
+  width: 75%;
+}
+
+.search-drop-down {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: skyblue;
+  color: #000;
+}
+
+.search-drop-down option {
+  background-color: white;
+}
