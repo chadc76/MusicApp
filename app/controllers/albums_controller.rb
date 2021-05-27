@@ -44,6 +44,56 @@ class AlbumsController < ApplicationController
     redirect_to band_url(@album.band_id)
   end
 
+  def new_tag
+    @tagging = Tagging.new
+    @album = Album.find_by(id: params[:id])
+    render :tag
+  end
+
+  def tag
+    @album = Album.find_by(id: params[:id])
+    @tagging = Tagging.new(taggable_id: params[:id], taggable_type: "Album")
+    tag = Tag.find_by(tag: params[:tagging][:tag])
+    if tag
+      @tagging.tag_id = tag.id
+    else 
+      tag = Tag.new(tag: params[:tagging][:tag])
+      if tag.save
+        @tagging.tag_id = tag.id
+      else
+        flash.now[:errors] = tag.errors.full_messages
+        redirect_to album_url(params[:id])
+        return
+      end
+    end
+
+    if @tagging.save
+      url = params[:tagging]
+      redirect_to album_url(params[:id])
+    else
+      flash.now[:errors] = @tagging.errors.full_messages
+      render :tag
+    end
+  end
+
+  def edit_tags
+    @album = Album.includes(:tags).find_by(id: params[:id])
+    @taggings = @album.tags
+    render :untag
+  end
+
+  def untag
+    @album = Album.find_by(id: params[:id])
+    tag = Tagging.find_by(taggable_id: params[:id], taggable_type: "Band", tag_id: params[:tag_id])
+    if tag
+      tag.destroy
+      flash[:notice] = ["The Tag has been removed"]
+      redirect_to album_url(params[:id])
+    else
+      redirect_to album_url(params[:id])
+    end
+  end
+
   private
 
   def album_params

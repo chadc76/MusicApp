@@ -25,8 +25,10 @@ Rails.application.routes.draw do
   resources :albums, except: %i(new index) do
     resources :tracks, only: [:new]
     member do
+      get 'new_tag'
+      get 'edit_tags'
       post 'tag'
-      post 'untag'
+      delete 'untag'
     end
   end
 
