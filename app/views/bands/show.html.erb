@@ -2,6 +2,18 @@
 
 <%= render 'shared/flashes', types: :notice %>
 
+<div class="tags-container">
+  <h4 class="tags-header">Tags</h4>
+  <ul class="page-links">
+    <% tags = @band.tags %>
+    <% if !tags.empty? %>
+      <% tags.each do |tag| %>
+        <%= render 'shared/tags', tag: tag %>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+
 <h4 class="sub-header">Albums</h1>
 
 <ul class="main-list">

@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   resources :bands do
     resources :albums, only: [:new]
     member do
-      get 'tags'
       post 'tag'
       post 'untag'
     end
@@ -24,7 +23,6 @@ Rails.application.routes.draw do
   resources :albums, except: %i(new index) do
     resources :tracks, only: [:new]
     member do
-      get 'tags'
       post 'tag'
       post 'untag'
     end
@@ -32,7 +30,6 @@ Rails.application.routes.draw do
 
   resources :tracks, except: %i(new index) do
     member do
-      get 'tags'
       post 'tag'
       post 'untag'
     end

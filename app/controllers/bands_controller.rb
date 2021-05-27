@@ -8,7 +8,7 @@ class BandsController < ApplicationController
   end
 
   def show
-    @band = Band.find_by(id: params[:id])
+    @band = Band.includes(:tags).includes(:albums).find_by(id: params[:id])
     render :show
   end
 
@@ -49,6 +49,28 @@ class BandsController < ApplicationController
     @band.destroy
     flash[:notice] = "#{@band.name} has been deleted!"
     redirect_to bands_url
+  end
+
+  def tag
+    tag = Tagging.new(taggable_id: params[:id], taggable_type: "Band", tag_id: params[:tag_id])
+    if tag
+      tag.save
+      redirect_to band_url(params[:id])
+    else
+      flash[:errors] = tag.errors.full_messages
+      redirect_to band_url(params[:id])
+    end
+  end
+
+  def untag
+    tag = Tagging.find_by(taggable_id: params[:id], taggable_type: "Band", tag_id: params[:tag_id])
+    if tag
+      tag.destroy
+      flash[:notice] = ["The Tag has been removed"]
+      redirect_to band_url(params[:id])
+    else
+      redirect_to band_url(params[:id])
+    end
   end
 
   private
