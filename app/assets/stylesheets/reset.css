@@ -155,7 +155,7 @@ p {
 
 .main-list li {
   width: calc(33% - 40px);
-  height: 100px;
+  height: 120px;
   margin: 0 20px 20px 0;
   border-radius: 10px;
   background-color: #FDDB61;
