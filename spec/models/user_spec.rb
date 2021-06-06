@@ -51,7 +51,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'returns user given good credentials' do
-      expect(User.find_by_credentials('test@test.com', 'password')).to be_a(User)
+      expect(User.find_by_credentials('test@test.com', 'password')).to eq(user)
     end
   end
 end
