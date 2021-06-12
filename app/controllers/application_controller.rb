@@ -8,12 +8,12 @@ class ApplicationController < ActionController::Base
       return
     end
 
-    user.reset_token!("session_token")
     session[:session_token] = user.session_token
     redirect_to bands_url
   end
 
   def log_out_user!
+    user.reset_token!("session_token")
     session[:session_token] = nil
   end
 
